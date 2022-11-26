@@ -1,24 +1,24 @@
 <template>
   <div>
-    <h1>Welcome to GeoChess</h1>
     <!-- <div v-for="Tour of Tours" :key="Tour.TourName">
-        {{ Tour.TourName }}
-      </div> -->
-    {{ Tours }}
+      {{ Tour.TourName }}
+    </div>
+    "
+    {{ " -----------  " }} -->
   </div>
 </template>
 
 <script setup lang="ts">
-const VITE_BASE_URL = import.meta.env.VITE_BASE_URL;
+import { useStore } from "@/stores/tourStore";
+import type { Tournament } from "@/stores/tournament";
 
-const response = await fetch(VITE_BASE_URL + "/tournaments", {
-  method: "GET", // *GET, POST, PUT, DELETE, etc.
-  mode: "cors", // no-cors, *cors, same-origin
-});
-console.log(response);
-const Tours = await response.json();
+const store = useStore();
+await store.fetchTours();
+const Tours: Tournament[] = store.getTournaments;
 
-console.log(Tours);
+// const { Tournaments: Tours } = storeToRefs(store);
+
+// const Tours = store.getTournaments;
 </script>
 
 <style scoped></style>
