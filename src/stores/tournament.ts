@@ -1,4 +1,13 @@
 export interface Tournament {
+  name: string;
+  location: string;
+  city: string;
+  system: string;
+  startingDate: string;
+  linkInfo: string;
+}
+
+export interface TournamentChessResults {
   TourName: string;
   Organizers: string;
   Federation: string;

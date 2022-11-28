@@ -37,11 +37,6 @@ onMounted(() => {
       '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   }).addTo(map);
 
-  const marker = L.marker([37.9, 23.7]) //confilct in rendering with map.addControl
-    .addTo(map)
-    .bindPopup("<b>Hello world!</b><br />I am a popup.")
-    .openPopup();
-
   popup.value = L.popup()
     .setLatLng([37.9, 23.7])
     .setContent("I am a standalone popup.")
@@ -66,7 +61,7 @@ function onMapClick(e: any) {
 async function addTourMarkers() {
   for (let Tour of Tours) {
     const response = await fetch(
-      `https://nominatim.openstreetmap.org/search/${Tour.Location}?` +
+      `https://nominatim.openstreetmap.org/search/${Tour.location}?` +
         new URLSearchParams({
           format: "json",
           countrycodes: "gr",
@@ -80,7 +75,10 @@ async function addTourMarkers() {
       console.log(nominatim);
       L.marker([nominatim[0].lat, nominatim[0].lon]) //[lat,lon]
         .addTo(map)
-        .bindPopup(nominatim[0].display_name)
+        .bindPopup(
+          `${nominatim[0].display_name} \n ----
+         ${Tour.name} ----- ${Tour.location} ----- ${Tour.linkInfo}`
+        )
         .openPopup();
     }
   }
@@ -89,8 +87,8 @@ async function addTourMarkers() {
 
 <style scoped>
 #map {
-  height: 100%;
-  width: 100%;
+  height: 80vh;
+  width: 80vh;
   color: black !important;
 }
 
