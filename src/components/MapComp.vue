@@ -2,6 +2,9 @@
   <div class="map-wrapper">
     <div id="map"></div>
     <p>{{ searchInput }}</p>
+    <div>
+      <span>{{ counterToursAdded }}</span>
+    </div>
   </div>
 </template>
 
@@ -17,6 +20,7 @@ const store = useStore();
 await store.fetchTours();
 const Tours: Tournament[] = store.getTournaments;
 
+const counterToursAdded = ref(0);
 const popup = ref();
 const searchInput = ref(""); // needs refactoring to get value from box
 

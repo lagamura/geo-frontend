@@ -5,6 +5,8 @@ export interface Tournament {
   system: string;
   startingDate: string;
   linkInfo: string;
+  lat?: string;
+  lon?: string;
 }
 
 export interface TournamentChessResults {
