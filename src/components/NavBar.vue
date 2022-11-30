@@ -1,7 +1,14 @@
 <template>
   <v-app-bar>
+    <v-btn variant="text" to="/">
+      <v-app-bar-title
+        >Geochess
+        <v-icon icon="mdi-earth"></v-icon>
+      </v-app-bar-title>
+    </v-btn>
     <v-spacer></v-spacer>
-    <router-link to="/about">about </router-link>
+    <v-btn variant="text" to="/contact">contact</v-btn>
+    <v-btn variant="text" to="/about">about</v-btn>
     <v-btn
       :prepend-icon="
         theme === 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'
@@ -25,4 +32,5 @@ function onClick() {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>

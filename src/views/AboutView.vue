@@ -17,7 +17,11 @@
       welcomed. You can suggest a feature in the contact form, or even better if
       you are a developer open a github issue about the front-end:
       <a href="https://github.com/lagamura/geo-frontend"> geo-frontend/</a>
-      and about the backend here:<a href="https://github.com/lagamura/geo-backend"> geo-backend/</a>
+      and about the backend here:<a
+        href="https://github.com/lagamura/geo-backend"
+      >
+        geo-backend/</a
+      >
     </p>
   </div>
 </template>
