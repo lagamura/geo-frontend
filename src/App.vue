@@ -1,28 +1,16 @@
 <template>
-  <div>
-    <h1>Welcome to GeoChess</h1>
-    <Suspense>
-      <template #default>
-        <MapComp />
-      </template>
-      <template #fallback>
-        <span>Loading... Map</span>
-      </template>
-    </Suspense>
-    <Suspense>
-      <template #default>
-        <MainComp />
-      </template>
-      <template #fallback>
-        <span>Loading...</span>
-      </template>
-    </Suspense>
-  </div>
+  <v-app :theme="store.getTheme">
+    <NavBar />
+    <v-main>
+      <v-container><MainContainer /></v-container>
+    </v-main>
+  </v-app>
 </template>
 
 <script setup lang="ts">
-import MainComp from "./components/MainComp.vue";
-import MapComp from "./components/MapComp.vue";
-</script>
+import NavBar from "@/components/NavBar.vue";
+import MainContainer from "./components/MainContainer.vue";
+import { useStore } from "@/stores/tourStore";
 
-<style scoped></style>
+const store = useStore();
+</script>

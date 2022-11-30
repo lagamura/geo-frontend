@@ -2,9 +2,10 @@
   <div class="map-wrapper">
     <div id="map"></div>
     <p>{{ searchInput }}</p>
-    <div>
-      <span>{{ counterToursAdded }}</span>
-    </div>
+  </div>
+  <v-btn @click="fetchToursAction()"> Fetch Tournaments </v-btn>
+  <div>
+    <span>{{ `Tournaments fetched: ${counterToursAdded} ` }}</span>
   </div>
 </template>
 
@@ -17,8 +18,13 @@ import { useStore } from "@/stores/tourStore";
 import type { Tournament } from "@/stores/tournament";
 
 const store = useStore();
-await store.fetchTours();
-const Tours: Tournament[] = store.getTournaments;
+const Tours = ref();
+const baseUrl = "https://ratings.fide.com/";
+async function fetchToursAction() {
+  await store.fetchTours();
+  Tours.value = store.getTournaments;
+  addTourMarkers();
+}
 
 const counterToursAdded = ref(0);
 const popup = ref();
@@ -34,23 +40,22 @@ let map: any;
 onMounted(() => {
   map = L.map("map");
   // map.setView([lat, lng], zoom);
-  map.setView([37.98381, 23.727539], 13);
+  map.setView([37.98381, 23.727539], 7);
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
     attribution:
       '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   }).addTo(map);
 
-  popup.value = L.popup()
-    .setLatLng([37.9, 23.7])
-    .setContent("I am a standalone popup.")
-    .openOn(map);
+  // popup.value = L.popup()
+  //   .setLatLng([37.9, 23.7])
+  //   .setContent("I am a standalone popup.")
+  //   .openOn(map);
 
   map.on("click", onMapClick);
 
   // searchInput.value = search.input;
   map.addControl(search);
-  addTourMarkers();
 });
 
 // console.log(search.value.searchElement.input.value);
@@ -63,12 +68,16 @@ function onMapClick(e: any) {
 }
 
 async function addTourMarkers() {
-  for (let Tour of Tours) {
+  for (let Tour of Tours.value) {
     if (Tour.lat && Tour.lon) {
       counterToursAdded.value++;
       L.marker([Tour.lat, Tour.lon]) //[lat,lon]
         .addTo(map)
-        .bindPopup(`${Tour.name} ----- ${Tour.location} ----- ${Tour.linkInfo}`)
+        .bindPopup(
+          `${Tour.name} ----- ${Tour.location} ----- <a href="${
+            baseUrl + Tour.linkInfo
+          }">${Tour.linkInfo}</a>`
+        )
         .openPopup();
     }
   }

@@ -9,12 +9,12 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from "@/stores/tourStore";
-import type { Tournament } from "@/stores/tournament";
+// import { useStore } from "@/stores/tourStore";
+// import type { Tournament } from "@/stores/tournament";
 
-const store = useStore();
-await store.fetchTours();
-const Tours: Tournament[] = store.getTournaments;
+// const store = useStore();
+// await store.fetchTours();
+// const Tours: Tournament[] = store.getTournaments;
 
 // const { Tournaments: Tours } = storeToRefs(store);
 
