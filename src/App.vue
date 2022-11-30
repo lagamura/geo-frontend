@@ -1,5 +1,5 @@
 <template>
-  <v-app :theme="store.getTheme">
+  <v-app :theme="theme">
     <NavBar />
     <v-main>
       <v-container><MainContainer /></v-container>
@@ -11,6 +11,8 @@
 import NavBar from "@/components/NavBar.vue";
 import MainContainer from "./components/MainContainer.vue";
 import { useStore } from "@/stores/tourStore";
+import { storeToRefs } from "pinia";
 
 const store = useStore();
+const { theme } = storeToRefs(store);
 </script>

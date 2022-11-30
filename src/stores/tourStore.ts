@@ -12,17 +12,6 @@ export const useStore = defineStore("tournaments", {
     getTournaments: (state): Tournament[] => {
       return state.Tournaments;
     },
-    getTheme: (state) => {
-      if (
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches
-      ) {
-        state.theme = "dark";
-      } else {
-        state.theme = "light";
-      }
-      return state.theme;
-    },
   },
   actions: {
     async fetchTours() {
@@ -36,6 +25,18 @@ export const useStore = defineStore("tournaments", {
         console.log(error);
         alert(error);
       }
+    },
+    SystemTheme: () => {
+      let theme;
+      if (
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+      ) {
+        theme = "dark";
+      } else {
+        theme = "light";
+      }
+      return theme;
     },
   },
 });

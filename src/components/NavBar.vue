@@ -1,7 +1,7 @@
 <template>
   <v-app-bar>
     <v-spacer></v-spacer>
-
+    <!-- <router-link></router-link> -->
     <v-btn
       :prepend-icon="
         theme === 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'
@@ -17,9 +17,11 @@ import { storeToRefs } from "pinia";
 
 const store = useStore();
 const { theme } = storeToRefs(store);
+theme.value = store.SystemTheme();
 
 function onClick() {
   theme.value = theme.value === "light" ? "dark" : "light";
+  console.log(theme.value);
 }
 </script>
 

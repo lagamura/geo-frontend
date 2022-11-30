@@ -20,11 +20,9 @@ import type { Tournament } from "@/stores/tournament";
 const store = useStore();
 const Tours = ref();
 const baseUrl = "https://ratings.fide.com/";
-async function fetchToursAction() {
-  await store.fetchTours();
-  Tours.value = store.getTournaments;
-  addTourMarkers();
-}
+await store.fetchTours();
+Tours.value = store.getTournaments;
+
 
 const counterToursAdded = ref(0);
 const popup = ref();
@@ -56,6 +54,7 @@ onMounted(() => {
 
   // searchInput.value = search.input;
   map.addControl(search);
+  addTourMarkers();
 });
 
 // console.log(search.value.searchElement.input.value);

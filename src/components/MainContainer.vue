@@ -3,7 +3,11 @@
     <h1>Welcome to GeoChess</h1>
     <Suspense>
       <template #default>
-        <MapComp />
+        <Transition appear>
+          <div>
+            <MapComp />
+          </div>
+        </Transition>
       </template>
       <template #fallback>
         <span>Loading... Map</span>
@@ -17,6 +21,9 @@
         <span>Loading...</span>
       </template>
     </Suspense>
+    <!-- <Transition appear>
+      <h3>This is Jerry</h3>
+    </Transition> -->
   </div>
 </template>
 
@@ -25,4 +32,14 @@ import MainComp from "@/components/MainComp.vue";
 import MapComp from "@/components/MapComp.vue";
 </script>
 
-<style scoped></style>
+<style scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 2s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>
