@@ -3,7 +3,7 @@
     <div id="map"></div>
     <p>{{ searchInput }}</p>
   </div>
-  <v-btn @click="fetchToursAction()"> Fetch Tournaments </v-btn>
+  <!-- <v-btn @click="fetchToursAction()"> Fetch Tournaments </v-btn> -->
   <div>
     <span>{{ `Tournaments fetched: ${counterToursAdded} ` }}</span>
   </div>
@@ -22,7 +22,6 @@ const Tours = ref();
 const baseUrl = "https://ratings.fide.com/";
 await store.fetchTours();
 Tours.value = store.getTournaments;
-
 
 const counterToursAdded = ref(0);
 const popup = ref();

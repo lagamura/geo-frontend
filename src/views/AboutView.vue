@@ -1,3 +1,4 @@
+<template>
   <div>
     <h1>Motivation</h1>
     <p>
@@ -19,3 +20,8 @@
       and about the backend here:<a href="https://github.com/lagamura/geo-backend"> geo-backend/</a>
     </p>
   </div>
+</template>
+
+<script setup lang="ts"></script>
+
+<style scoped></style>

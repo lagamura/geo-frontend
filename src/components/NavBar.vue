@@ -1,7 +1,7 @@
 <template>
   <v-app-bar>
     <v-spacer></v-spacer>
-    <!-- <router-link></router-link> -->
+    <router-link to="/about">about </router-link>
     <v-btn
       :prepend-icon="
         theme === 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'
