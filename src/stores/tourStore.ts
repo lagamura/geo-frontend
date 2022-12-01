@@ -4,7 +4,10 @@ import type { Tournament } from "./tournament";
 // let Tournaments: Tournament []
 
 export const useStore = defineStore("tournaments", {
-  state: () => ({ Tournaments: [] as Tournament[] }),
+  state: () => ({
+    Tournaments: [] as Tournament[],
+    theme: " ",
+  }),
   getters: {
     getTournaments: (state): Tournament[] => {
       return state.Tournaments;
@@ -22,6 +25,18 @@ export const useStore = defineStore("tournaments", {
         console.log(error);
         alert(error);
       }
+    },
+    SystemTheme: () => {
+      let theme;
+      if (
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+      ) {
+        theme = "dark";
+      } else {
+        theme = "light";
+      }
+      return theme;
     },
   },
 });

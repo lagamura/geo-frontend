@@ -7,6 +7,7 @@ export interface Tournament {
   linkInfo: string;
   lat?: number;
   lon?: number;
+  region?: string;
 }
 
 export interface TournamentChessResults {

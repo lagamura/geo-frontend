@@ -1,10 +1,14 @@
 <template>
-  <div class="map-wrapper">
-    <div id="map"></div>
+  <div>
+    <div
+      id="map"
+      :class="smAndDown ? 'map-container' : 'map-container-lg'"
+    ></div>
     <p>{{ searchInput }}</p>
-    <div>
-      <span>{{ counterToursAdded }}</span>
-    </div>
+    <!-- </div>
+  <v-btn @click="fetchToursAction()"> Fetch Tournaments </v-btn>
+  <div> -->
+    <span>{{ `Tournaments fetched: ${counterToursAdded} ` }}</span>
   </div>
 </template>
 
@@ -14,11 +18,16 @@ import L from "leaflet";
 import * as GeoSearch from "leaflet-geosearch";
 import "leaflet-geosearch/dist/geosearch.css";
 import { useStore } from "@/stores/tourStore";
+import { useDisplay } from "vuetify";
 import type { Tournament } from "@/stores/tournament";
 
+const { smAndDown } = useDisplay();
+
 const store = useStore();
+const Tours = ref();
+const baseUrl = "https://ratings.fide.com/";
 await store.fetchTours();
-const Tours: Tournament[] = store.getTournaments;
+Tours.value = store.getTournaments;
 
 const counterToursAdded = ref(0);
 const popup = ref();
@@ -34,17 +43,17 @@ let map: any;
 onMounted(() => {
   map = L.map("map");
   // map.setView([lat, lng], zoom);
-  map.setView([37.98381, 23.727539], 13);
+  map.setView([37.98381, 23.727539], 6);
   L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
     attribution:
       '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   }).addTo(map);
 
-  popup.value = L.popup()
-    .setLatLng([37.9, 23.7])
-    .setContent("I am a standalone popup.")
-    .openOn(map);
+  // popup.value = L.popup()
+  //   .setLatLng([37.9, 23.7])
+  //   .setContent("I am a standalone popup.")
+  //   .openOn(map);
 
   map.on("click", onMapClick);
 
@@ -63,12 +72,16 @@ function onMapClick(e: any) {
 }
 
 async function addTourMarkers() {
-  for (let Tour of Tours) {
+  for (let Tour of Tours.value) {
     if (Tour.lat && Tour.lon) {
       counterToursAdded.value++;
       L.marker([Tour.lat, Tour.lon]) //[lat,lon]
         .addTo(map)
-        .bindPopup(`${Tour.name} ----- ${Tour.location} ----- ${Tour.linkInfo}`)
+        .bindPopup(
+          `${Tour.name} ----- ${Tour.location} ----- <a href="${
+            baseUrl + Tour.linkInfo
+          }">${Tour.linkInfo}</a>`
+        )
         .openPopup();
     }
   }
@@ -76,9 +89,15 @@ async function addTourMarkers() {
 </script>
 
 <style scoped>
-#map {
+.map-container {
+  height: 100vh;
+  width: 100vw;
+}
+.map-container-lg {
   height: 80vh;
-  width: 80vh;
+  width: 70vw;
+}
+#map {
   color: black !important;
 }
 
