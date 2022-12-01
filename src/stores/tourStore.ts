@@ -16,7 +16,7 @@ export const useStore = defineStore("tournaments", {
   actions: {
     async fetchTours() {
       try {
-        const response = await fetch("api/tournaments", {
+        const response = await fetch("/api/tournaments", {
           method: "GET", // *GET, POST, PUT, DELETE, etc.
           mode: "same-origin", // no-cors, *cors, same-origin
         });

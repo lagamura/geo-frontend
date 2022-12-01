@@ -24,6 +24,8 @@ export default defineConfig({
     proxy: {
       "/api": {
         target: "https://geo-backend-production.up.railway.app",
+        //http://localhost:8000/api/tournaments
+        //"https://geo-backend-production.up.railway.app"
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/api/, ""),
