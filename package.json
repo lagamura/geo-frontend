@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
-    "start": "vite build",
+    "start": "npx http-server -P http://127.0.0.1:${PORT} ./dist",
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
