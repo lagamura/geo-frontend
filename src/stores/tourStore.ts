@@ -16,10 +16,13 @@ export const useStore = defineStore("tournaments", {
   actions: {
     async fetchTours() {
       try {
-        const response = await fetch("/api/tournaments", {
-          method: "GET", // *GET, POST, PUT, DELETE, etc.
-          mode: "same-origin", // no-cors, *cors, same-origin
-        });
+        const response = await fetch(
+          "https://geo-backend-production.up.railway.app/tournaments",
+          {
+            method: "GET", // *GET, POST, PUT, DELETE, etc.
+            mode: "same-origin", // no-cors, *cors, same-origin
+          }
+        );
         this.Tournaments = await response.json();
       } catch (error) {
         console.log(error);
