@@ -95,7 +95,7 @@ async function addTourMarkers() {
 }
 .map-container-lg {
   height: 80vh;
-  width: 80vw;
+  width: 70vw;
 }
 #map {
   color: black !important;

@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h1>Welcome to GeoChess</h1>
+    <div class="d-flex justify-center">
+      <h1>Welcome to GeoChess</h1>
+    </div>
     <Suspense>
       <template #default>
         <Transition appear>
