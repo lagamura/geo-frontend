@@ -2,7 +2,7 @@
   <v-app :theme="theme">
     <NavBar />
     <v-main>
-      <v-container ><RouterView /></v-container>
+      <v-container><RouterView /></v-container>
     </v-main>
     <FooterBar />
   </v-app>
