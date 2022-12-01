@@ -23,7 +23,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://geo-backend-production.up.railway.app/",
+        target: "https://geo-backend-production.up.railway.app",
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/api/, ""),
