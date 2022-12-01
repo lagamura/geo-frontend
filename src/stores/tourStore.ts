@@ -20,7 +20,7 @@ export const useStore = defineStore("tournaments", {
           "https://geo-backend-production.up.railway.app/tournaments",
           {
             method: "GET", // *GET, POST, PUT, DELETE, etc.
-            mode: "no-cors", // no-cors, *cors, same-origin
+            mode: "navigate", // no-cors, *cors, same-origin
           }
         );
         this.Tournaments = await response.json();
