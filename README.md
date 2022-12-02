@@ -17,5 +17,7 @@
       you are a developer open a github issue about the front-end:
       <a href="https://github.com/lagamura/geo-frontend"> geo-frontend/</a>
       and about the backend here:<a href="https://github.com/lagamura/geo-backend"> geo-backend/</a>
+      please find the structured directory here:
+      <a href="https://github.com/lagamura/geochess"> geochess/</a>
     </p>
   </div>
