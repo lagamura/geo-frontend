@@ -12,4 +12,5 @@ module.exports = {
   parserOptions: {
     ecmaVersion: "latest",
   },
+  "prettier/prettier": ["error", { endOfLine: "auto" }], //this needs for solving the constant cr error by eslint
 };

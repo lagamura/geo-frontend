@@ -15,24 +15,10 @@
     <p>
       For this very first release of the project, your suggestions are very
       welcomed. You can suggest a feature in the contact form, or even better if
-      you are a developer open a github issue about the front-end:
-      <a href="https://github.com/lagamura/geo-frontend"> geo-frontend/</a>
-      and about the backend here:<a
-        href="https://github.com/lagamura/geo-backend"
-      >
-        geo-backend/</a
-      >
+      you are a developer please find the structured directory here:
+      <a href="https://github.com/lagamura/geochess"> geochess/</a>
     </p>
   </div>
-
-<v-expansion-panels>
-  <v-expansion-panel
-    title="For Developers"
-  >
-        please find the structured directory here:
-      <a href="https://github.com/lagamura/geochess"> geochess/</a>
-  </v-expansion-panel>
-</v-expansion-panels>
 </template>
 
 <script setup lang="ts"></script>
