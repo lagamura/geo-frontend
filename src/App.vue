@@ -2,7 +2,7 @@
   <v-app :theme="theme">
     <NavBar />
     <v-main>
-      <v-container><RouterView /></v-container>
+      <v-container class="main-container"><RouterView /></v-container>
     </v-main>
     <FooterBar />
   </v-app>
@@ -17,3 +17,10 @@ import { storeToRefs } from "pinia";
 const store = useStore();
 const { theme } = storeToRefs(store);
 </script>
+
+<style scoped>
+.main-container{
+  min-height: 80vh;
+}
+
+</style>

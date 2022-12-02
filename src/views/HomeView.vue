@@ -1,20 +1,21 @@
 <template>
   <div>
-    <div class="d-flex justify-center">
+    <div class="d-block">
       <h1>Welcome to GeoChess</h1>
+      <Suspense>
+        <template #default>
+          <Transition appear>
+            <div>
+              <MapComp />
+            </div>
+          </Transition>
+        </template>
+        <template #fallback>
+          <span>Loading... Map</span>
+        </template>
+      </Suspense>
     </div>
-    <Suspense>
-      <template #default>
-        <Transition appear>
-          <div>
-            <MapComp />
-          </div>
-        </Transition>
-      </template>
-      <template #fallback>
-        <span>Loading... Map</span>
-      </template>
-    </Suspense>
+
     <Suspense>
       <template #default>
         <MainComp />
