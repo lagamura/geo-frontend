@@ -2,7 +2,8 @@
   <v-footer class="d-flex flex-column">
     <div class="bg-teal d-flex w-100 align-center px-4">
       <strong>Alpha Version 0.1</strong>
-
+      <a target="_blank" href="https://icons8.com/icon/59795/globe">Globe</a>
+      icon by <a target="_blank" href="https://icons8.com">Icons8</a>
       <v-spacer></v-spacer>
 
       <v-btn
