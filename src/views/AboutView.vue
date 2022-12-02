@@ -24,6 +24,15 @@
       >
     </p>
   </div>
+
+<v-expansion-panels>
+  <v-expansion-panel
+    title="For Developers"
+  >
+        please find the structured directory here:
+      <a href="https://github.com/lagamura/geochess"> geochess/</a>
+  </v-expansion-panel>
+</v-expansion-panels>
 </template>
 
 <script setup lang="ts"></script>
