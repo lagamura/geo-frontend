@@ -21,27 +21,17 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 
-const url = import.meta.env.VITE_API_URL;
+let url: string;
+if (import.meta.env.DEV) {
+  url = "api/tournaments";
+} else {
+  url = "https://geo-backend-production.up.railway.app/tournaments";
+}
 
 const valid = ref(true); // this on purpose is set to true, but latter should change again to false
 const name = ref("");
 const inputMessage = ref("");
 const email = ref("");
-
-// document.getElementById('contact-form').addEventListener('submit', function(e) {
-//   e.preventDefault();
-
-//   // Get the form data
-//   let name = document.getElementById('name').value;
-//   let email = document.getElementById('email').value;
-//   let message = document.getElementById('message').value;
-
-//   // Send the form data using an AJAX request
-//   let xhr = new XMLHttpRequest();
-//   xhr.open('POST', '/send-message');
-//   xhr.setRequestHeader('Content-Type', 'application/json');
-//   xhr.send(JSON.stringify({name: name, email: email, message: message}));
-// });
 
 function submit() {
   // const form: HTMLFormElement | any = document.getElementById("form");
@@ -50,13 +40,13 @@ function submit() {
   formData.append("inputMessage", inputMessage.value);
   formData.append("email", email.value);
 
-  formData.forEach((value, key) => {
-    alert(value + ":" + key);
-  });
-  // fetch(url + "/form", {
-  //   body: formData,
-  //   method: "post",
+  // formData.forEach((value, key) => {
+  //   alert(value + ":" + key);
   // });
+  fetch(`${url}/contact`, {
+    body: formData,
+    method: "post",
+  });
   alert("Form Submitted");
 }
 </script>

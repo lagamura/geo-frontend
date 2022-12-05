@@ -24,10 +24,9 @@ import type { Tournament } from "@/stores/tournament";
 const { smAndDown } = useDisplay();
 
 const store = useStore();
-const Tours = ref();
 const baseUrl = "https://ratings.fide.com/";
 await store.fetchTours();
-Tours.value = store.getTournaments;
+const Tours = ref<Tournament[]>(store.getTournaments);
 
 const counterToursAdded = ref(0);
 const popup = ref();
@@ -73,16 +72,28 @@ function onMapClick(e: any) {
 
 async function addTourMarkers() {
   for (let Tour of Tours.value) {
-    if (Tour.lat && Tour.lon) {
+    if (
+      Tour.lat &&
+      Tour.lon &&
+      Tour.startingDate >= new Date(Date.now()).toISOString() // add Tournaments only for future dates
+    ) {
       counterToursAdded.value++;
       L.marker([Tour.lat, Tour.lon]) //[lat,lon]
         .addTo(map)
         .bindPopup(
           `${Tour.name} ----- ${Tour.location} ----- <a href="${
             baseUrl + Tour.linkInfo
-          }">${Tour.linkInfo}</a>`
+          }">${Tour.linkInfo}</a> -----
+          Starting on: <b>${Tour.startingDate}</b>
+          `
         )
         .openPopup();
+    } else {
+      console.log(
+        `${Tour.startingDate} --- ${new Date(Date.now())
+          .toISOString()
+          .slice(0, 10)}`
+      );
     }
   }
 }

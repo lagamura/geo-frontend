@@ -23,7 +23,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://geo-backend-production.up.railway.app",
+        target: "http://localhost:8000",
         //http://localhost:8000/api/tournaments
         //"https://geo-backend-production.up.railway.app"
         changeOrigin: true,
