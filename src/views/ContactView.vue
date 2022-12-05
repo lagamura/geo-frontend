@@ -23,9 +23,9 @@ import { ref, computed } from "vue";
 
 let url: string;
 if (import.meta.env.DEV) {
-  url = "api/tournaments";
+  url = "api/contact";
 } else {
-  url = "https://geo-backend-production.up.railway.app/tournaments";
+  url = "https://geo-backend-production.up.railway.app/contact";
 }
 
 const valid = ref(true); // this on purpose is set to true, but latter should change again to false
@@ -43,7 +43,7 @@ function submit() {
   // formData.forEach((value, key) => {
   //   alert(value + ":" + key);
   // });
-  fetch(`${url}/contact`, {
+  fetch(url, {
     body: formData,
     method: "post",
   });
