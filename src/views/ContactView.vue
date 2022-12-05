@@ -43,10 +43,10 @@ function submit() {
   // formData.forEach((value, key) => {
   //   alert(value + ":" + key);
   // });
-  fetch(url, {
-    body: formData,
-    method: "post",
-  });
+  // fetch(url, {
+  //   body: formData,
+  //   method: "post",
+  // });
   alert("Form Submitted");
 }
 </script>
