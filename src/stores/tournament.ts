@@ -1,7 +1,7 @@
 export interface Tournament {
   name: string;
   location: string;
-  city: string;
+  city?: string;
   system: string;
   startingDate: string;
   linkInfo: string;

@@ -1,32 +1,27 @@
 <template>
   <div>
-    <div class="d-block">
-      <h1>Welcome to GeoChess</h1>
-      <Suspense>
-        <template #default>
-          <Transition appear>
-            <div>
-              <MapComp />
-            </div>
-          </Transition>
-        </template>
-        <template #fallback>
-          <span>Loading... Map</span>
-        </template>
-      </Suspense>
-    </div>
-
-    <Suspense>
-      <template #default>
-        <MainComp />
-      </template>
-      <template #fallback>
-        <span>Loading...</span>
-      </template>
-    </Suspense>
-    <!-- <Transition appear>
-      <h3>This is Jerry</h3>
-    </Transition> -->
+    <v-row>
+      <v-col cols="8">
+        <!-- <div class="d-block"> -->
+        <h1>Welcome to GeoChess</h1>
+        <Suspense>
+          <template #default>
+            <Transition appear>
+              <div>
+                <MapComp />
+              </div>
+            </Transition>
+          </template>
+          <template #fallback>
+            <span>Loading... Map</span>
+          </template>
+        </Suspense>
+        <!-- </div> -->
+      </v-col>
+      <v-col cols="4" class="pt-6 mt-8">
+        <!-- <MainComp ></MainComp> -->
+      </v-col>
+    </v-row>
   </div>
 </template>
 
