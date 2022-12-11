@@ -13,7 +13,7 @@
         :icon="icon"
         variant="plain"
         size="small"
-        href="https://github.com/lagamura/geo-frontend"
+        href="https://github.com/lagamura/geochess"
       >
       </v-btn>
     </div>
