@@ -1,5 +1,6 @@
 <template>
-  <div>
+  
+  <div class="about-container">
     <h1>Motivation</h1>
     <p>
       Imagine you are travelling ✈️ abroad, and you feel like you want to play
@@ -23,4 +24,12 @@
 
 <script setup lang="ts"></script>
 
-<style scoped></style>
+<style scoped>
+
+.about-container {
+  width: 60%;
+  margin:auto;
+  padding-top: 5%;
+}
+
+</style>

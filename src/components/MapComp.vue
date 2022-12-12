@@ -55,8 +55,8 @@ onMounted(() => {
   // map.on("click", onMapClick);
 
   // searchInput.value = search.input;
-  map.addControl(search);
   addTourMarkers();
+  map.addControl(search);
 });
 
 // console.log(search.value.searchElement.input.value);
@@ -79,7 +79,7 @@ function addTourMarkers() {
     chunkedLoading: true,
     //singleMarkerMode: true,
     spiderfyOnMaxZoom: true,
-    maxClusterRadius: 40
+    maxClusterRadius: 40,
   });
   for (let Tour of Tours.value) {
     if (

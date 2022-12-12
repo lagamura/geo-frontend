@@ -20,6 +20,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from "vue";
+import router from "@/router";
 
 let url: string;
 if (import.meta.env.DEV) {
@@ -48,6 +49,7 @@ function submit() {
     method: "post",
   });
   alert("Form Submitted");
+  router.push('/')
 }
 </script>
 <style scoped></style>
