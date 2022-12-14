@@ -2,7 +2,7 @@
   <div>
     <div
       id="map"
-      :class="smAndDown ? 'map-container' : 'map-container-lg'"
+      class='map-container-lg'
     ></div>
     <p>{{ searchInput }}</p>
     <!-- </div>
@@ -20,13 +20,11 @@ import "leaflet-geosearch/dist/geosearch.css";
 import "leaflet.markercluster/dist/MarkerCluster.Default.css";
 import "leaflet.markercluster";
 import { useStore } from "@/stores/tourStore";
-import { useDisplay } from "vuetify";
 import type { Tournament } from "@/stores/tournament";
 import type { TournamentMap } from "@/stores/tournament";
 import type { SearchMode } from "@/stores/tournament";
 import { storeToRefs } from "pinia";
 
-const { smAndDown } = useDisplay();
 
 const store = useStore();
 const baseUrl = "https://ratings.fide.com/";
@@ -118,7 +116,7 @@ function addTourMarkers(mode?: SearchMode) {
 <style scoped>
 .map-container {
   height: 100vh;
-  width: 100vw;
+  /* width: 100vw; */
 }
 .map-container-lg {
   height: 100vh;

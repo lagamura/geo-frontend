@@ -2,7 +2,7 @@
   <h2>Please leave your message/suggestion bellow</h2>
   <v-form id="form" @submit.prevent="submit" v-model="valid">
     <v-container>
-      <v-row justify="center" align-content="center" class="w-50">
+      <v-row justify="center" align-content="center" class="w-auto">
         <v-col align-self="center">
           <v-text-field
             v-model="name"
