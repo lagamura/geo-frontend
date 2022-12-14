@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@types/leaflet.markercluster": "^1.5.1",
+    "@vuepic/vue-datepicker": "^3.6.3",
     "leaflet": "^1.9.3",
     "leaflet-geosearch": "^3.7.0",
     "leaflet.markercluster": "^1.5.3",

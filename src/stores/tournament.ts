@@ -4,10 +4,17 @@ export interface Tournament {
   city?: string;
   system: string;
   startingDate: string;
+  endingDate?: string;
   linkInfo: string;
   lat?: number;
   lon?: number;
   region?: string;
+}
+
+export interface TournamentMap extends Tournament {
+  city: string;
+  lat: number;
+  lon: number;
 }
 
 export interface TournamentChessResults {
@@ -25,3 +32,6 @@ export interface TournamentChessResults {
   Date: string;
   //   "Rating-Ø": string;
 }
+
+export type SearchMode = "singleDate" | "rangeOfDates" | "clear"| undefined;
+

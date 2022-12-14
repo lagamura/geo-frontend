@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import type { Tournament } from "./tournament";
+import type { SearchMode } from "@/stores/tournament";
 
 // let Tournaments: Tournament []
 let url: string;
@@ -13,6 +14,11 @@ export const useStore = defineStore("tournaments", {
   state: () => ({
     Tournaments: [] as Tournament[],
     theme: " ",
+    daterange: {
+      startingDate: new Date(),
+      endingDate: new Date(),
+    },
+    mode: <SearchMode>"clear",
   }),
   getters: {
     getTournaments: (state): Tournament[] => {

@@ -22,6 +22,8 @@ import "leaflet.markercluster";
 import { useStore } from "@/stores/tourStore";
 import { useDisplay } from "vuetify";
 import type { Tournament } from "@/stores/tournament";
+import type { TournamentMap } from "@/stores/tournament";
+import type { SearchMode } from "@/stores/tournament";
 import { storeToRefs } from "pinia";
 
 const { smAndDown } = useDisplay();
@@ -30,9 +32,9 @@ const store = useStore();
 const baseUrl = "https://ratings.fide.com/";
 await store.fetchTours();
 const { Tournaments: Tours } = storeToRefs(store);
+const TourstoMap = ref<Tournament[]>(Tours.value);
 
 const counterToursAdded = ref(0);
-const popup = ref();
 const searchInput = ref(""); // needs refactoring to get value from box
 
 const search = GeoSearch.GeoSearchControl({
@@ -55,18 +57,11 @@ onMounted(() => {
   // map.on("click", onMapClick);
 
   // searchInput.value = search.input;
-  addTourMarkers();
+  addTourMarkers(store.mode); //WATCH out for reactivity
   map.addControl(search);
 });
 
 // console.log(search.value.searchElement.input.value);
-
-function onMapClick(e: any) {
-  popup.value
-    .setLatLng(e.latlng)
-    .setContent(`You clicked the map at ${e.latlng.toString()}`)
-    .openOn(map);
-}
 
 function getLcontent(e: any) {
   var popup = e.target.getPopup();
@@ -74,25 +69,33 @@ function getLcontent(e: any) {
   console.log(content);
 }
 
-function addTourMarkers() {
+function addTourMarkers(mode?: SearchMode) {
   const markers = L.markerClusterGroup({
     chunkedLoading: true,
     //singleMarkerMode: true,
     spiderfyOnMaxZoom: true,
     maxClusterRadius: 40,
   });
-  for (let Tour of Tours.value) {
-    if (
-      Tour.lat &&
-      Tour.lon &&
-      Tour.startingDate >= new Date(Date.now()).toISOString() // add Tournaments only for future dates
-    ) {
-      counterToursAdded.value++;
-      // console.log(`working with ${Tour.location}`);
-      // let length = Tours.value.filter((el) => {
-      //   return el.location === Tour.location;
-      // }).length;
-      // console.log(Tour.location, " found multiple times");
+
+  if (mode == "singleDate") {
+    TourstoMap.value = Tours.value.filter((tour) => {
+      return new Date(tour.startingDate) >= store.daterange.startingDate;
+    });
+  } else if (mode == "rangeOfDates") {
+    TourstoMap.value = Tours.value.filter((tour) => {
+      if (typeof tour.endingDate !== "undefined") {
+        return (
+          new Date(tour.startingDate) >= store.daterange.startingDate &&
+          new Date(tour.endingDate) <= store.daterange.endingDate
+        );
+      }
+    });
+  }
+  console.log(`TourstoMap value: ${TourstoMap.value.length}`);
+
+  for (let Tour of TourstoMap.value) {
+    counterToursAdded.value++;
+    if (Tour.lat && Tour.lon) {
       markers.addLayer(
         L.marker([Tour.lat, Tour.lon]) //[lat,lon]
           .on("click", getLcontent)
@@ -106,12 +109,6 @@ function addTourMarkers() {
           )
       );
       // ... Add more layers ...
-    } else {
-      // console.log(
-      //   `${Tour.startingDate} --- ${new Date(Date.now())
-      //     .toISOString()
-      //     .slice(0, 10)}`
-      // );
     }
   }
   map.addLayer(markers);

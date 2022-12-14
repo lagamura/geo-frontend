@@ -8,7 +8,7 @@
           <template #default>
             <Transition appear>
               <div>
-                <MapComp />
+                <MapComp :key="daterange.startingDate.toISOString()"/>
               </div>
             </Transition>
           </template>
@@ -19,7 +19,8 @@
         <!-- </div> -->
       </v-col>
       <v-col cols="4" class="pt-6 mt-8">
-        <!-- <MainComp ></MainComp> -->
+        <DatePicker  />
+        <!-- <VselectBug /> -->
       </v-col>
     </v-row>
   </div>
@@ -28,6 +29,19 @@
 <script setup lang="ts">
 import MainComp from "@/components/MainComp.vue";
 import MapComp from "@/components/MapComp.vue";
+import DatePicker from "@/components/DatePicker.vue";
+import { useStore } from "@/stores/tourStore";
+import { storeToRefs } from "pinia";
+import { ref, watch } from "vue";
+
+const store = useStore();
+const { daterange } = storeToRefs(store);
+const componentKey = ref(0);
+
+watch(daterange, () => {
+  componentKey.value++
+  console.log(componentKey)
+})
 </script>
 
 <style scoped>
