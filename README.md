@@ -23,3 +23,7 @@
   </div>
 
 #Project deployed on railway
+
+# How to run docker image
+to crete the image: `docker build -t geo-frontend .`
+for the container: `docker run --name geofrontend-container -dp 5173:5173 geo-frontend`
